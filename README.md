@@ -1,5 +1,5 @@
 # HACKY
-Python hacking suit.
+Python hacking suite.
 
 ## INSTALLATION
 ```bash
