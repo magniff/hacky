@@ -29,4 +29,11 @@ hello from hacky
 >>> class T(FunctionType): pass
 >>>
 ```
+* Make your class final:
+```python
+>>> hacky.set_flags(int, hacky.get_flags(int) ^ (1 << 10))
+<class 'int'>
+>>> class T(int): pass
+TypeError: type 'int' is not an acceptable base type
+```
 * More stuff soon. 
