@@ -1,16 +1,16 @@
 # HACKY
-Python hacking suit.
+Python hacking suite.
 
 ## INSTALLATION
 ```bash
-python setup install
+python setup.py install
 ```
 
 ## EXAMPLE
 * Class transplantation:
 ```python
 >>> import hacky
->>> hacky.set_class(100, type('MyInt', (int,), {'__repr__': lambda self: "hello from hacky"})
+>>> hacky.set_class(100, type('MyInt', (int,), {'__repr__': lambda self: "hello from hacky"}))
 hello from hacky
 >>> 100
 hello from hacky
