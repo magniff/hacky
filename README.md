@@ -6,7 +6,7 @@ Python hacking suite.
 python setup.py install
 ```
 
-## EXAMPLE
+## EXAMPLES
 * Class transplantation:
 ```python
 >>> import hacky
