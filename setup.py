@@ -1,10 +1,13 @@
 from distutils.core import setup, Extension
 
-module1 = Extension(
-    'hacky', sources = ['hacky.c']
+
+hacky_module = Extension('hacky', sources = ['hacky.c'])
+
+
+setup(
+    name='hacky',
+    version='0.0.1',
+    description='Hacky!',
+    ext_modules=[hacky_module]
 )
 
-setup (name = 'PackageName',
-       version = '1.0',
-       description = 'This is a demo package',
-       ext_modules = [module1])
