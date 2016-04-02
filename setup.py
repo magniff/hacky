@@ -1,7 +1,7 @@
 from distutils.core import setup, Extension
 
 module1 = Extension(
-    'hacky', sources = ['extension.c']
+    'hacky', sources = ['hacky.c']
 )
 
 setup (name = 'PackageName',
