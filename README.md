@@ -3,7 +3,7 @@ Python hacking suit.
 
 ## INSTALLATION
 ```bash
-python setup install
+python setup.py install
 ```
 
 ## EXAMPLE
