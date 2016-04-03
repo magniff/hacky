@@ -16,6 +16,7 @@ hello from hacky
 hello from hacky
 >>> 
 ```
+
 * Messing around with tp_flags:
 ```python
 >>> from types import FunctionType
@@ -29,11 +30,29 @@ hello from hacky
 >>> class T(FunctionType): pass
 >>>
 ```
+
 * Make your class final:
 ```python
 >>> hacky.set_flags(int, hacky.get_flags(int) ^ (1 << 10))
 <class 'int'>
 >>> class T(int): pass
 TypeError: type 'int' is not an acceptable base type
+```
+
+* Read process's memory. Lets examine memory around `int` object `100`.
+```python
+>>> [hacky.read_memory_in(id(100)+shift) for shift in range(20)]
+[7, 0, 0, 0, 0, 0, 0, 0, 192, 228, 158, 0, 0, 0, 0, 0, 1, 0, 0, 0]
+>>> import struct
+>>> [int(item) for item in struct.pack('<I', id(int))]
+[192, 228, 158, 0]
+```
+There are 7 links on this instance and also we get correct address of type `int` located in memory.
+
+* Modify process's memory:
+```python
+>>> hacky.write_memory_in(id(100)+24, 200)
+>>> 100
+200
 ```
 * More stuff soon. 
