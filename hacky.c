@@ -11,8 +11,37 @@ set_class(PyObject *self, PyObject *args)
         return NULL;
 
     obj->ob_type = cls;
-    return obj;
+    Py_RETURN_NONE;
 }
+
+
+PyLongObject *
+read_memory_in(PyObject *self, PyObject *args)
+{
+    PyLongObject *address_object;
+    if (!PyArg_UnpackTuple(args, "read_memory_in", 1, 1, &address_object))
+        return NULL;
+
+    void *address = PyLong_AsVoidPtr(address_object);
+    return PyLong_FromUnsignedLong(*((unsigned char *)address));
+}
+
+
+PyObject *
+write_memory_in(PyObject *self, PyObject *args)
+{
+    PyLongObject *address_object;
+    PyLongObject *new_data_object;
+    if (!PyArg_UnpackTuple(args, "write_memory_in", 2, 2, &address_object, &new_data_object))
+        return NULL;
+
+    unsigned char *address = (unsigned char *)PyLong_AsVoidPtr(address_object);
+    unsigned char new_data = (unsigned char)PyLong_AsUnsignedLong(new_data_object);
+
+    *address = new_data;
+    Py_RETURN_NONE;
+}
+
 
 
 PyLongObject *
@@ -27,7 +56,7 @@ get_flags(PyObject *self, PyObject *args)
 }
 
 
-PyTypeObject *
+PyObject *
 set_flags(PyObject *self, PyObject *args)
 {
     PyTypeObject *cls;
@@ -38,7 +67,7 @@ set_flags(PyObject *self, PyObject *args)
 
     unsigned long flags = PyLong_AsUnsignedLong(flags_object);
     cls->tp_flags = flags;
-    return cls;
+    Py_RETURN_NONE;
 }
 
 
@@ -49,6 +78,14 @@ static PyMethodDef HackyMethods[] = {
     },
     {
         "get_flags",  get_flags,
+        METH_VARARGS, "Get type`s flags."
+    },
+    {
+        "read_memory_in",  read_memory_in,
+        METH_VARARGS, "Get type`s flags."
+    },
+    {
+        "write_memory_in",  write_memory_in,
         METH_VARARGS, "Get type`s flags."
     },
     {
