@@ -5,7 +5,7 @@ static PyObject*
 set_class(PyObject *self, PyObject *args)
 {
     PyObject *obj;
-    PyObject *cls;
+    PyTypeObject *cls;
 
     if (!PyArg_UnpackTuple(args, "set_class", 2, 2, &obj, &cls))
         return NULL;
@@ -15,7 +15,7 @@ set_class(PyObject *self, PyObject *args)
 }
 
 
-PyLongObject *
+PyObject *
 read_memory_in(PyObject *self, PyObject *args)
 {
     PyLongObject *address_object;
@@ -35,8 +35,10 @@ write_memory_in(PyObject *self, PyObject *args)
     if (!PyArg_UnpackTuple(args, "write_memory_in", 2, 2, &address_object, &new_data_object))
         return NULL;
 
-    unsigned char *address = (unsigned char *)PyLong_AsVoidPtr(address_object);
-    unsigned char new_data = (unsigned char)PyLong_AsUnsignedLong(new_data_object);
+    unsigned char *address = \
+        (unsigned char *)PyLong_AsVoidPtr(address_object);
+    unsigned char new_data = \
+        (unsigned char)PyLong_AsUnsignedLong(new_data_object);
 
     *address = new_data;
     Py_RETURN_NONE;
@@ -44,7 +46,7 @@ write_memory_in(PyObject *self, PyObject *args)
 
 
 
-PyLongObject *
+PyObject *
 get_flags(PyObject *self, PyObject *args)
 {
     PyTypeObject *cls;
@@ -52,7 +54,7 @@ get_flags(PyObject *self, PyObject *args)
     if (!PyArg_UnpackTuple(args, "get_flags", 1, 1, &cls))
         return NULL;
 
-    return PyLong_FromUnsignedLong(cls->tp_flags);
+    return PyLong_FromUnsignedLong((unsigned long)cls->tp_flags);
 }
 
 
