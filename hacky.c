@@ -18,7 +18,7 @@ set_class(PyObject *self, PyObject *args)
 PyObject *
 read_memory_in(PyObject *self, PyObject *args)
 {
-    PyLongObject *address_object;
+    PyObject *address_object;
     if (!PyArg_UnpackTuple(args, "read_memory_in", 1, 1, &address_object))
         return NULL;
 
@@ -30,8 +30,8 @@ read_memory_in(PyObject *self, PyObject *args)
 PyObject *
 write_memory_in(PyObject *self, PyObject *args)
 {
-    PyLongObject *address_object;
-    PyLongObject *new_data_object;
+    PyObject *address_object;
+    PyObject *new_data_object;
     if (!PyArg_UnpackTuple(args, "write_memory_in", 2, 2, &address_object, &new_data_object))
         return NULL;
 
