@@ -54,7 +54,7 @@ get_flags(PyObject *self, PyObject *args)
     if (!PyArg_UnpackTuple(args, "get_flags", 1, 1, &cls))
         return NULL;
 
-    return PyLong_FromUnsignedLong((unsigned long)cls->tp_flags);
+    return PyLong_FromUnsignedLong(cls->tp_flags);
 }
 
 
