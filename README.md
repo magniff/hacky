@@ -60,4 +60,17 @@ There are 7 links on this instance and also we get correct address of type `int`
 >>> 100
 200
 ```
+
+* Inject attr at type`s dictionary
+```python
+>>> object_dict = hacky.fetch_dict(object)
+>>> object_dict["foo"] = "hello world"
+>>> (100).foo
+'hello world'
+>>> "hello world".foo
+'hello world'
+>>> (lambda x: x).foo
+'hello world'
+```
+
 * More stuff soon. 
