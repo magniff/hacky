@@ -4,7 +4,7 @@ Python hacking suite.
 ## INSTALLATION
 Tested on CPython 3.4
 ```bash
-python setup.py install
+python setup.py install (preffered)
 ```
 or
 ```bash
