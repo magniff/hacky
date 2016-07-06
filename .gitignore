@@ -2,6 +2,8 @@
 *.swp
 build
 .project
+.cproject
+dist/*
 .pydevproject
 .settings/*
 src/*
